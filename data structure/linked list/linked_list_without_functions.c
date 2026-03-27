@@ -33,12 +33,15 @@ int main()
         printf("%d %d\n", head->data, second->data);
         
         free(second);
-        second = NULL;
+        //second = NULL;
 
         free(first);
-        first->next = NULL;
+        //first->next = NULL;
 
-        free(head);
+        //free(head);
+        first = NULL;
+        second = NULL;
+        head = NULL;
 
         printf("A lista foi desalocada\n");
     }
