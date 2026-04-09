@@ -53,6 +53,48 @@ void push_begin(node_t **head, int val)
     *head = new_node;
 }
 
+
+//
+int pop(node_t **head)
+{
+    int retval = -1;
+    node_t *next_node= NULL;
+
+    if(*head == NULL)
+    {
+        return -1;
+    }
+
+    next_node = (*head)->next;
+    retval = (*head)->val;
+    free(*head);
+    *head = next_node;
+
+    return retval;
+}
+
+//
+int remove_last(node_t *head)
+{
+    int retval = 0;
+
+    if(head->next == NULL)
+    {
+        retval = head->val;
+        free(head);
+        return retval;
+    }
+    
+    node_t *current = head;
+    while(current->next->next != NULL)
+    {
+        current = current->next;
+    }
+    retval = current->next->val;
+    free(current->next);
+    current->next = NULL;
+    return retval;
+}
 int main()
 {
     node_t *head = NULL; //empty head
