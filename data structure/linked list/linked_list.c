@@ -95,6 +95,43 @@ int remove_last(node_t *head)
     current->next = NULL;
     return retval;
 }
+
+//
+int removeByIndex(node_t ** head, int n)
+{
+    int i = 0;
+    int retval = -1;
+    node_t *current = *head;
+    node_t *temp_node = NULL;
+
+    if(n == 0)
+    {
+        return pop(head);
+    }
+
+    for(i = 0; i < n-1; i++)
+    {
+        if(current->next == NULL)
+        {
+            return -1;
+        }
+        current = current->next;
+
+        if(current->next == NULL)
+        {
+            return -1;
+        }
+    }
+
+    temp_node = current->next;
+    retval = temp_node->val;
+    current->next = temp_node->next;
+
+    free(temp_node);
+
+    return retval;
+}
+
 int main()
 {
     node_t *head = NULL; //empty head
